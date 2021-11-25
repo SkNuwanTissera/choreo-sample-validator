@@ -16,7 +16,7 @@
  * under the License.
  */
 
-package org.ballerinax.openapi.validator;
+package com.wso2.choreosamples.validator;
 
 /**
  * Custom exception class

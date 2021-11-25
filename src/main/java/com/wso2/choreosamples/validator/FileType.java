@@ -1,4 +1,4 @@
-package org.ballerinax.openapi.validator;
+package com.wso2.choreosamples.validator;
 
 public enum FileType {
     YAML("yaml"), TOML("toml"), PROPERTIES("properties"), YML("yml"), JSON("json");
