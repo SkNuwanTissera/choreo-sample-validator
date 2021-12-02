@@ -86,7 +86,8 @@ public class IntegrationUtils extends CommonUtils {
      * @throws IOException if an error occurred while accessing files inside given path
      */
     private static boolean isPackageChanged(String packageDirectoryPath) throws IOException {
-        final String oldHash = (String) integrationProperties.get(baseDir.relativize(Paths.get(packageDirectoryPath)).toString());
+        final String oldHash = (String) integrationProperties.get(baseDir.relativize(Paths.get(packageDirectoryPath))
+                .toString());
         if (oldHash != null) {
             final String currentHash = generateHashString(packageDirectoryPath);
             return !oldHash.equalsIgnoreCase(currentHash);
@@ -115,4 +116,3 @@ public class IntegrationUtils extends CommonUtils {
         }
     }
 }
-
