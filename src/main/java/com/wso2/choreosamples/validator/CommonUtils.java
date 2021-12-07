@@ -45,8 +45,6 @@ import static com.wso2.choreosamples.validator.Constants.BALLERINA_TOML;
 import static com.wso2.choreosamples.validator.Constants.PACKAGE_MD;
 import static com.wso2.choreosamples.validator.Constants.PACKAGE;
 import static com.wso2.choreosamples.validator.Constants.VERSION;
-import static com.wso2.choreosamples.validator.Constants.SNAPSHOT;
-import static com.wso2.choreosamples.validator.Constants.EMPTY_STRING;
 
 public class CommonUtils {
     /**
@@ -116,18 +114,18 @@ public class CommonUtils {
         try (InputStream input = new FileInputStream(filePath)) {
             Toml toml = new Toml().read(input);
             String version = toml.getTable(PACKAGE).getString(VERSION);
-            String semVer = version.replace(SNAPSHOT, EMPTY_STRING);
-            String[] semVerPartitions = semVer.split("\\.");
+//            String semVer = version.replace(SNAPSHOT, EMPTY_STRING);
+            String[] semVerPartitions = version.split("\\.");
             if (semVerPartitions.length != 3) {
                 throw new ValidatorException("Invalid version pattern");
             } else {
                 int patchVersion = Integer.parseInt(semVerPartitions[2]);
                 String updatedVersion = String.format("%s.%s.%s", semVerPartitions[0], semVerPartitions[1], (patchVersion + 1));
-                String updatedVersionWithSnapshotAdded = updatedVersion + SNAPSHOT;
+//                String updatedVersionWithSnapshotAdded = updatedVersion + SNAPSHOT;
                 TomlWriter tomlWriter = new TomlWriter();
                 Map<String, Object> currentTomlFileMap = toml.toMap();
                 Map<String, String> packageTable = (Map<String, String>) currentTomlFileMap.get(PACKAGE);
-                packageTable.replace(VERSION, updatedVersionWithSnapshotAdded);
+                packageTable.replace(VERSION, updatedVersion);
                 currentTomlFileMap.replace(PACKAGE, packageTable);
                 try (OutputStream out = new FileOutputStream(filePath)) {
                     tomlWriter.write(currentTomlFileMap, out);
