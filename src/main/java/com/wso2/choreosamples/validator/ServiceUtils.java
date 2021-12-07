@@ -50,8 +50,7 @@ public class ServiceUtils extends CommonUtils {
      */
     public static void loadServiceProperties(String projectBaseDir) throws IOException {
         baseDir = Paths.get(projectBaseDir);
-        try (var fileInputStream =
-                     new FileInputStream(Paths.get(projectBaseDir, SERVICE_PROPERTIES).toString())) {
+        try (var fileInputStream = new FileInputStream(Paths.get(projectBaseDir, SERVICE_PROPERTIES).toString())) {
             serviceProperties.load(fileInputStream);
         }
     }
@@ -86,7 +85,8 @@ public class ServiceUtils extends CommonUtils {
      * @throws IOException if an error occurred while accessing files inside given path
      */
     private static boolean isPackageChanged(String packageDirectoryPath) throws IOException {
-        final String oldHash = (String) serviceProperties.get(baseDir.relativize(Paths.get(packageDirectoryPath)).toString());
+        final String oldHash = (String) serviceProperties.get(baseDir.relativize(Paths.get(packageDirectoryPath))
+                .toString());
         if (oldHash != null) {
             final String currentHash = generateHashString(packageDirectoryPath);
             return !oldHash.equalsIgnoreCase(currentHash);
@@ -115,4 +115,3 @@ public class ServiceUtils extends CommonUtils {
         }
     }
 }
-

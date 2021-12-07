@@ -4,8 +4,8 @@ plugins {
     id "com.github.johnrengelman.shadow" version "${githubJohnrengelmanShadowVersion}"
 }
 
-group 'org.ballerinax.openapi'
-version '1.0-SNAPSHOT'
+group 'org.choreo.templates'
+version '1.0.0'
 
 repositories {
     mavenCentral()
